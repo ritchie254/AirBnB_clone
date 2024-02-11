@@ -5,13 +5,16 @@ from datetime import datetime
 import models
 
 """
+basemodel
 """
 
 class BaseModel:
 	"""
+		intialization of the basemodel
 	"""
 	def __init__(self, *args, **kwargs):
 		"""
+			creates an instance of a class basemodel
 		"""
 		fmt = "%Y-%m-%dT%H:%M:%S.%f"
 		if kwargs:
@@ -30,12 +33,14 @@ class BaseModel:
 
 	def save(self):
 		"""
+			saves and updates the time when instancr is created
 		"""
 		self.updated_at = datetime.utcnow()
 		models.storage.save()
 
 	def to_dict(self):
 		"""
+			converts an instance into a dictionary
 		"""
 		instance = self.__dict__.copy()
 		instance["__class__"] = self.__class__.__name__
@@ -45,5 +50,6 @@ class BaseModel:
 
 	def __str__(self):
 		"""
+			string representations of a created instance
 		"""
 		return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
